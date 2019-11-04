@@ -1,2 +1,2 @@
 # terraform-aws-ssm-parameter
-Create a SSM parameter
+Creates a SSM parameter.
