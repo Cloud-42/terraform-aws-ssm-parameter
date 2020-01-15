@@ -29,4 +29,7 @@ variable "contact" {
 variable "orchestration" {
   description = "Orchestration tag"
 }
-
+variable "key_id" {
+  description = "Set KMS key id used for encryption if SecureString is used. Not required for String type"
+  default     = null
+}
