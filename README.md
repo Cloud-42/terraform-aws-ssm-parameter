@@ -20,8 +20,8 @@ Upon launching the following resources will be created:
  * AWS account
 
 ## Major versions
- * ** v2 ** : Parameter is created. Lifecycle ignore changes applied. Once created changes are ignored and the value can be managed outside Terraform. 
- * ** v3 ** : Parameter is created. Value is managed by Terraform. Any changes made outside of Terraform will be corrected.
+ * <B>v2</B> : Parameter is created. Lifecycle ignore changes applied. Once created changes are ignored and the value can be managed outside Terraform. 
+ * <B>v3</B> : Parameter is created. Value is managed by Terraform. Any changes made outside of Terraform will be corrected.
 
 ## Variables
 | Variable | Meaning |
