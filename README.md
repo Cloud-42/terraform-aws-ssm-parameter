@@ -16,7 +16,7 @@ Upon launching the following resources will be created:
  * SSM Parameter
 
 ## Dependencies and Prerequisites
- * Terraform v0.12. or higher
+ * Terraform v0.12.18 or higher
  * AWS account
 
 ## Major versions
@@ -39,7 +39,6 @@ Upon launching the following resources will be created:
 
 ## Outputs
  * parameter
-
 
 ## Usage
 

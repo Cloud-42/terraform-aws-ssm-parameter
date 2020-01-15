@@ -5,14 +5,7 @@ resource "aws_ssm_parameter" "parameter" {
   value       = var.value
   tier        = var.tier
   overwrite   = var.overwrite
-
-  lifecycle {
-   ignore_changes = [
-      # Ignore changes to value 
-      value,
-    ]
-  }
-
+  key_id      = var.key_id
 
   tags = {
     Name          = "${var.environment}.${var.name}"
