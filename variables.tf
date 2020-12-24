@@ -3,6 +3,7 @@ variable "name" {
 }
 variable "description" {
   description = "Description of the parameter"
+  default     = ""
 }
 variable "type" {
   description = "Type of the parameter. One of String, StringList or SecureString"
@@ -10,7 +11,6 @@ variable "type" {
 }
 variable "value" {
   description = "The value of the parameter"
-  default     = "updateme"
 }
 variable "tier" {
   description = "Tier of the parameter. Standard or Advanced"
@@ -19,15 +19,6 @@ variable "tier" {
 variable "overwrite" {
   description = "If parameter already exists, whether to overwrite or not"
   default     = "false"
-}
-variable "environment" {
-  description = "Environment where parameter is built."
-}
-variable "contact" {
-  description = "Contact tag"
-}
-variable "orchestration" {
-  description = "Orchestration tag"
 }
 variable "key_id" {
   description = "Set KMS key id used for encryption if SecureString is used. Not required for String type"
