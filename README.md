@@ -16,30 +16,42 @@ Upon launching the following resources will be created:
 
  * SSM Parameter
 
-## Dependencies and Prerequisites
- * Terraform v0.12.18 or higher
- * AWS account
-
 ## Major versions
  * <B>v2</B> : Parameter is created. Lifecycle ignore changes applied. Once created changes are ignored and the value can be managed outside Terraform. 
  * <B>v3</B> : Parameter is created. Value is managed by Terraform. Any changes made outside of Terraform will be corrected.
 
-## Variables
-| Variable | Meaning |
-| :------- | :----- |
-| name | Name of the parameter |
-| description | Description of the parameter |
-| type | Parameter type. One of String, StringList or SecureString |
-| value | The value of the parameter |
-| tier | Tier of the parameter. Standard or Advanced |
-| overwrite | If parameter already exists, whether to overwrite or not. default = false  |
-| environment | Environment where parameter is built |
-| contact | Contact tag |
-| orchestration | Orchestration tag  |
-| key_id | Set KMS key id used for encryption if SecureString is used. Not required for String type  |
+ * <B>v4</B> : Parameter is created. Value is managed by Terraform. Any changes made outside of Terraform will be corrected. Tags passed in as a map.
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13.5 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| description | Description of the parameter | `string` | `""` | no |
+| key\_id | Set KMS key id used for encryption if SecureString is used. Not required for String type | `any` | `null` | no |
+| name | Name of the parameter | `any` | n/a | yes |
+| overwrite | If parameter already exists, whether to overwrite or not | `string` | `"false"` | no |
+| tags | Tags map | `map(string)` | `{}` | no |
+| tier | Tier of the parameter. Standard or Advanced | `string` | `"Standard"` | no |
+| type | Type of the parameter. One of String, StringList or SecureString | `string` | `"SecureString"` | no |
+| value | The value of the parameter | `any` | n/a | yes |
 
 ## Outputs
- * parameter
+
+| Name | Description |
+|------|-------------|
+| parameter | Parameter object |
 
 ## Usage
 
@@ -47,18 +59,16 @@ To import the module add the following to your TF file:
 ```
 module "parameter" {
   source  = "Cloud-42/ssm-parameter/aws"
-  version = "3.0.0"  # Or required version
+  version = "4.0.0"  # Or required version
 
-  name          = "db_username"
+  name          = ".env.production"
   type          = "SecureString"
-  value         = module.db.master_username
-  description   = var.description 
-  contact       = var.contact
-  environment   = var.nonprd_environment
-  orchestration = var.orchestration
+  value         = file("${path.module}/.env.production")
   overwrite     = true
+  tags          = var.tags
 }
 ```
+
 * To initialise the module run: terraform init
 * To update the module run    : terraform get --update
 * To see a plan of changes    : terraform plan
