@@ -24,3 +24,8 @@ variable "key_id" {
   description = "Set KMS key id used for encryption if SecureString is used. Not required for String type"
   default     = null
 }
+variable "tags" {
+  description = "Tags map"
+  type        = map(string)
+  default     = {}
+}
