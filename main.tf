@@ -8,4 +8,10 @@ resource "aws_ssm_parameter" "parameter" {
   key_id      = var.key_id != null ? var.key_id : null
 
   tags = var.tags
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to value
+      value,
+    ]
+  }
 }

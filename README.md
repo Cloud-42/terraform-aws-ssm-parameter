@@ -21,57 +21,45 @@ Upon launching the following resources will be created:
  * <B>v3</B> : Parameter is created. Value is managed by Terraform. Any changes made outside of Terraform will be corrected.
 
  * <B>v4</B> : Parameter is created. Value is managed by Terraform. Any changes made outside of Terraform will be corrected. Tags passed in as a map.
+ * <B>v5</B> : Parameter is created. Lifecycle ignore changes applied. Once created changes are ignored and the value can be managed outside Terraform. Tags passed in as a map.
 
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.13.5 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4.6 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws\_ssm\_parameter.parameter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| description | Description of the parameter | `string` | `""` | no |
-| key\_id | Set KMS key id used for encryption if SecureString is used. Not required for String type | `any` | `null` | no |
-| name | Name of the parameter | `any` | n/a | yes |
-| overwrite | If parameter already exists, whether to overwrite or not | `string` | `"false"` | no |
-| tags | Tags map | `map(string)` | `{}` | no |
-| tier | Tier of the parameter. Standard or Advanced | `string` | `"Standard"` | no |
-| type | Type of the parameter. One of String, StringList or SecureString | `string` | `"SecureString"` | no |
-| value | The value of the parameter | `any` | n/a | yes |
+| <a name="input_description"></a> [description](#input\_description) | Description of the parameter | `string` | `""` | no |
+| <a name="input_key_id"></a> [key\_id](#input\_key\_id) | Set KMS key id used for encryption if SecureString is used. Not required for String type | `any` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the parameter | `any` | n/a | yes |
+| <a name="input_overwrite"></a> [overwrite](#input\_overwrite) | If parameter already exists, whether to overwrite or not | `string` | `"false"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags map | `map(string)` | `{}` | no |
+| <a name="input_tier"></a> [tier](#input\_tier) | Tier of the parameter. Standard or Advanced | `string` | `"Standard"` | no |
+| <a name="input_type"></a> [type](#input\_type) | Type of the parameter. One of String, StringList or SecureString | `string` | `"SecureString"` | no |
+| <a name="input_value"></a> [value](#input\_value) | The value of the parameter | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| parameter | Parameter object |
-
-## Usage
-
-To import the module add the following to your TF file:
-```
-module "parameter" {
-  source  = "Cloud-42/ssm-parameter/aws"
-  version = "4.0.0"  # Or required version
-
-  name          = ".env.production"
-  type          = "SecureString"
-  value         = file("${path.module}/.env.production")
-  overwrite     = true
-  tags          = var.tags
-}
-```
-
-* To initialise the module run: terraform init
-* To update the module run    : terraform get --update
-* To see a plan of changes    : terraform plan
-* To apply                    : terraform apply
-* To automatically apply      : terraform apply --auto-approve
-
+| <a name="output_parameter"></a> [parameter](#output\_parameter) | Parameter object |
